@@ -1,10 +1,13 @@
 import react, { useState, Component } from "react";
 import GoogleMapReact from 'google-map-react';
 import MyMarker from "./Marker";
+import './MyMapStyle.css'
+import { tehranLocation } from "./locationsConfigs";
+
 
 function MyMap() {
-    const [lat, setLat] = useState(34.0522);
-    const [lng, setLng] = useState(-118.2437);
+    const [lat, setLat] = useState();
+    const [lng, setLng] = useState();
 
     const changeMap = (ev) => {
         const { center: { lat, lng } } = ev
@@ -14,18 +17,18 @@ function MyMap() {
 
     return (
 
-        <div style={{ height: '300px', width: '400px' }}>
+        <div className="mapContainer">
             <GoogleMapReact
                 bootstrapURLKeys={{ key: 'AIzaSyBUTKPUisgxG7JHsIq1WIGa0TryCVK8KoE' }}
-                defaultCenter={[34.0522, -118.2437]}
+                defaultCenter={tehranLocation}
                 defaultZoom={11}
                 onChange={(ev) => changeMap(ev)}
             >
                 <MyMarker
-                    lat={lat}
-                    lng={lng}
-                    text="Marker"
+                    lat={lat || tehranLocation[0]}
+                    lng={lng || tehranLocation[1]}
                 />
+
             </GoogleMapReact>
         </div>
     );

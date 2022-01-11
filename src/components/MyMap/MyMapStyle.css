@@ -1,0 +1,14 @@
+.mapContainer{
+    height: 300px;
+    width: 400px;
+}
+
+.markerContainer{
+    position:relative;
+}
+
+.marker{
+    position:absolute;
+    top: -30px;
+    left: -15px;
+}
