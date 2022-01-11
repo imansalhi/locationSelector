@@ -1,0 +1,6 @@
+.locBox{
+    width: 200px;
+    margin: 32px;
+    display: flex;
+    flex-direction: column;
+}
