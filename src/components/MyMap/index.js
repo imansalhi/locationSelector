@@ -1,5 +1,6 @@
 import react, { useState, Component } from "react";
 import GoogleMapReact from 'google-map-react';
+import MyMarker from "./Marker";
 
 function MyMap() {
     const [lat, setLat] = useState(34.0522);
@@ -10,7 +11,7 @@ function MyMap() {
         setLat(lat);
         setLng(lng)
     }
-    const AnyReactComponent = ({ text }) => <div>{text}</div>;
+
     return (
 
         <div style={{ height: '300px', width: '400px' }}>
@@ -20,7 +21,7 @@ function MyMap() {
                 defaultZoom={11}
                 onChange={(ev) => changeMap(ev)}
             >
-                <AnyReactComponent
+                <MyMarker
                     lat={lat}
                     lng={lng}
                     text="Marker"
