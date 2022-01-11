@@ -2,7 +2,7 @@
 import react, { useState } from "react";
 import MyMap from "../../components/MyMap";
 import './LocStyles.css';
-import 'leaflet/dist/leaflet.css';
+
 
 function SelectLocation() {
   const [user, setUser] = useState(null);
@@ -10,7 +10,6 @@ function SelectLocation() {
 
   return (
     <>
-      <p>iman</p>
       <MyMap />
     </>
   );
