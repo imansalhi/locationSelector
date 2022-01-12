@@ -7,9 +7,12 @@ import './LocStyles.css';
 
 function SelectLocation() {
   const [locName, setLocName] = useState(null);
-  const [location, setLocation] = useState(null);
   const [lat, setLat] = useState();
   const [lng, setLng] = useState();
+
+  const changeLocName=(txt)=>{
+    setLocName(txt)
+  }
 
   const changeMap = (ev) => {
     const { center: { lat, lng } } = ev
@@ -19,7 +22,7 @@ function SelectLocation() {
 
   return (
     <>
-      <InputText />
+      <InputText onChange={changeLocName}/>
       <MyMap changeMap={changeMap} position={{ lat, lng }} />
     </>
   );
