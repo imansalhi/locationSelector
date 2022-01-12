@@ -5,6 +5,7 @@ import MyMap from "../../components/MyMap";
 import './LocStyles.css';
 import { useSelector, useDispatch } from 'react-redux'
 import { addLoction } from '../../services/Redux/location/locationsSlice'
+import { ComboBox } from "../../components/inputComp/comboBox";
 
 
 
@@ -31,11 +32,20 @@ function SelectLocation() {
   }
 
 
+  const options = [
+    'one', 'two', 'three'
+  ];
+  const defaultOption = options[0];
 
   return (
     <>
       <InputText onChange={changeLocName} value={locName} />
       <MyMap changeMap={changeMap} position={{ lat, lng }} />
+      <ComboBox
+        options={options}
+        onChange={(ev) => console.log(ev)}
+        value={defaultOption}
+        placeholder="Select an option" />
       <input onClick={submit} type={'button'} value={`+ Add`} />
 
     </>
