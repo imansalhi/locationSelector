@@ -1,5 +1,5 @@
 
-import react, { useState } from "react";
+import { useState } from "react";
 import InputText from "../../components/inputComp/inputText";
 import MyMap from "../../components/MyMap";
 import './LocStyles.css';
