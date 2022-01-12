@@ -5,14 +5,11 @@ import './MyMapStyle.css'
 import { tehranLocation } from "./locationsConfigs";
 
 
-function MyMap() {
-    const [lat, setLat] = useState();
-    const [lng, setLng] = useState();
+function MyMap({ changeMap, position }) {
+    const { lat, lng } = position
 
-    const changeMap = (ev) => {
-        const { center: { lat, lng } } = ev
-        setLat(lat);
-        setLng(lng)
+    const onChangeMap = (ev) => {
+        changeMap(ev)
     }
 
     return (
@@ -22,7 +19,7 @@ function MyMap() {
                 bootstrapURLKeys={{ key: 'AIzaSyBUTKPUisgxG7JHsIq1WIGa0TryCVK8KoE' }}
                 defaultCenter={tehranLocation}
                 defaultZoom={11}
-                onChange={(ev) => changeMap(ev)}
+                onChange={(ev) => onChangeMap(ev)}
             >
                 <MyMarker
                     lat={lat || tehranLocation[0]}

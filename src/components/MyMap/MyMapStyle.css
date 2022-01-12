@@ -1,6 +1,7 @@
 .mapContainer{
     height: 300px;
     width: 400px;
+    margin: 8px;
 }
 
 .markerContainer{
