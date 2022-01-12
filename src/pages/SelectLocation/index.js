@@ -6,16 +6,17 @@ import './LocStyles.css';
 import { RootState } from '../../services/Redux/store'
 import { useSelector, useDispatch } from 'react-redux'
 import { decrement, increment } from '../../services/Redux/counter/counterSlice'
+import { addLoction } from '../../services/Redux/location/locationsSlice'
 
 
 
 function SelectLocation() {
-  const [locName, setLocName] = useState(null);
+  const [locName, setLocName] = useState('');
   const [lat, setLat] = useState();
   const [lng, setLng] = useState();
 
   const changeLocName = (txt) => {
-    setLocName(txt)
+    setLocName(txt.target.value)
   }
 
   const changeMap = (ev) => {
@@ -24,15 +25,22 @@ function SelectLocation() {
     setLng(lng)
   }
 
-  const count = useSelector((state: RootState) => state.counter.value)
+  const count = useSelector((state) => state.counter.value)
+  const locations = useSelector((state) => state.locations.value)
   const dispatch = useDispatch()
+  const submit = () => {
+    dispatch(addLoction({ position: { lat, lng, }, locName }))
+    console.log(locations)
+  }
+
+
 
   return (
     <>
-      <InputText onChange={changeLocName} />
+      <InputText onChange={changeLocName} value={locName} />
       <MyMap changeMap={changeMap} position={{ lat, lng }} />
-
-      <div>
+      <input onClick={submit} type={'button'} value={`+ Add`} />
+      {/* <div>
         <div>
           <button
             aria-label="Increment value"
@@ -48,7 +56,7 @@ function SelectLocation() {
             Decrement
           </button>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
