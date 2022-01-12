@@ -3,6 +3,10 @@ import react, { useState } from "react";
 import InputText from "../../components/inputComp/inputText";
 import MyMap from "../../components/MyMap";
 import './LocStyles.css';
+import { RootState } from '../../services/Redux/store'
+import { useSelector, useDispatch } from 'react-redux'
+import { decrement, increment } from '../../services/Redux/counter/counterSlice'
+
 
 
 function SelectLocation() {
@@ -10,7 +14,7 @@ function SelectLocation() {
   const [lat, setLat] = useState();
   const [lng, setLng] = useState();
 
-  const changeLocName=(txt)=>{
+  const changeLocName = (txt) => {
     setLocName(txt)
   }
 
@@ -20,10 +24,31 @@ function SelectLocation() {
     setLng(lng)
   }
 
+  const count = useSelector((state: RootState) => state.counter.value)
+  const dispatch = useDispatch()
+
   return (
     <>
-      <InputText onChange={changeLocName}/>
+      <InputText onChange={changeLocName} />
       <MyMap changeMap={changeMap} position={{ lat, lng }} />
+
+      <div>
+        <div>
+          <button
+            aria-label="Increment value"
+            onClick={() => dispatch(increment(5))}
+          >
+            Increment
+          </button>
+          <span>{count}</span>
+          <button
+            aria-label="Decrement value"
+            onClick={() => dispatch(decrement())}
+          >
+            Decrement
+          </button>
+        </div>
+      </div>
     </>
   );
 }
