@@ -1,10 +1,10 @@
 
-import { useState } from "react";
 import InputText from "../../components/inputComp/inputText";
 import MyMap from "../../components/MyMap";
 import './LocStyles.css';
 import { useSelector, useDispatch } from 'react-redux'
 import { addLoction } from '../../services/Redux/location/locationsSlice'
+import { decrement, increment } from '../../services/Redux/counter/counterSlice'
 import { ComboBox } from "../../components/inputComp/comboBox";
 import FileSelector from "../../components/inputComp/file";
 import Btn from "../../components/inputComp/botton";
@@ -29,12 +29,14 @@ function SelectLocation() {
 
   //tou can check the added lovations here 
   const locations = useSelector((state) => state.locations.value)
+  const count = useSelector((state) => state.counter.value)
   const dispatch = useDispatch()
   const submit = () => {
     dispatch(addLoction({
       position: { lat, lng, },
       locName, logo, placeType
     }))
+    console.log('KAs:>',locations)
     resetForm()
   }
 
@@ -55,7 +57,23 @@ function SelectLocation() {
         placeholder="Select an option" />
       <FileSelector handleFile={handleFile} />
       <Btn onClick={() => submit()} value={`+ save`} />
-
+      <div>
+      <div>
+        <button
+          aria-label="Increment value"
+          onClick={() => dispatch(increment())}
+        >
+          Increment
+        </button>
+        <span>{count}</span>
+        <button
+          aria-label="Decrement value"
+          onClick={() => dispatch(decrement())}
+        >
+          Decrement
+        </button>
+      </div>
+    </div>
     </>
   );
 }

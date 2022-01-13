@@ -1,12 +1,11 @@
 import './App.css';
-import SelectLocation from './pages/SelectLocation';
-import react, { useState } from "react";
+import Routing from './services/Routing';
 
 
 function App() {
 
   return (
-    <SelectLocation />
+    <Routing />
   );
 }
 
