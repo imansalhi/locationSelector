@@ -11,9 +11,11 @@ import FileSelector from "../../components/inputComp/file";
 
 
 function SelectLocation() {
-  const [locName, setLocName] = useState('');
+  const [locName, setLocName] = useState();
   const [lat, setLat] = useState();
   const [lng, setLng] = useState();
+  const [logo, setLogo] = useState()
+  const [placeType, setPlaceType] = useState()
 
   const changeLocName = (txt) => {
     setLocName(txt.target.value)
@@ -25,16 +27,28 @@ function SelectLocation() {
     setLng(lng)
   }
 
+  const handleFile = (file) => {
+    console.log('file is :', file)
+    setLogo(file)
+  }
+
+  const handleType = (option) => {
+    setPlaceType(option.value)
+  }
+
 
   const locations = useSelector((state) => state.locations.value)
   const dispatch = useDispatch()
   const submit = () => {
-    dispatch(addLoction({ position: { lat, lng, }, locName }))
+    dispatch(addLoction({
+      position: { lat, lng, },
+      locName, logo, placeType
+    }))
   }
 
 
   const options = [
-    'one', 'two', 'three'
+    'Business', 'Residential', 'Economic'
   ];
   const defaultOption = options[0];
 
@@ -44,10 +58,10 @@ function SelectLocation() {
       <MyMap changeMap={changeMap} position={{ lat, lng }} />
       <ComboBox
         options={options}
-        onChange={(ev) => console.log(ev)}
+        onChange={(ev) => handleType(ev)}
         value={defaultOption}
         placeholder="Select an option" />
-        <FileSelector/>
+      <FileSelector handleFile={handleFile} />
       <input onClick={submit} type={'button'} value={`+ Add`} />
 
     </>
