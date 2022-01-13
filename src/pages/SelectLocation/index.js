@@ -27,7 +27,7 @@ function SelectLocation() {
   } = useLocations()
 
 
-
+  //tou can check the added lovations here 
   const locations = useSelector((state) => state.locations.value)
   const dispatch = useDispatch()
   const submit = () => {
