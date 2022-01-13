@@ -12,11 +12,11 @@ import Btn from "../../components/inputComp/botton";
 
 
 function SelectLocation() {
-  const [locName, setLocName] = useState();
-  const [lat, setLat] = useState();
-  const [lng, setLng] = useState();
-  const [logo, setLogo] = useState()
-  const [placeType, setPlaceType] = useState()
+  const [locName, setLocName] = useState(null);
+  const [lat, setLat] = useState(null);
+  const [lng, setLng] = useState(null);
+  const [logo, setLogo] = useState(null)
+  const [placeType, setPlaceType] = useState(null)
 
   const changeLocName = (txt) => {
     setLocName(txt.target.value)
@@ -29,7 +29,6 @@ function SelectLocation() {
   }
 
   const handleFile = (file) => {
-    console.log('file is :', file)
     setLogo(file)
   }
 
@@ -41,10 +40,20 @@ function SelectLocation() {
   const locations = useSelector((state) => state.locations.value)
   const dispatch = useDispatch()
   const submit = () => {
+    debugger
     dispatch(addLoction({
       position: { lat, lng, },
       locName, logo, placeType
     }))
+    resetForm()
+  }
+
+  const resetForm = () => {
+    setLocName('');
+    setLat(null);
+    setLng(null);
+    setPlaceType(null)
+    setLogo(null)
   }
 
 
@@ -64,7 +73,7 @@ function SelectLocation() {
         placeholder="Select an option" />
       <FileSelector handleFile={handleFile} />
       {/* <input onClick={submit} type={'button'} value={`+ Add`} /> */}
-      <Btn onClick={submit}value={`+ save`}/>
+      <Btn onClick={() => submit()} value={`+ save`} />
 
     </>
   );
