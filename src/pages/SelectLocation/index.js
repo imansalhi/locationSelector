@@ -6,6 +6,7 @@ import './LocStyles.css';
 import { useSelector, useDispatch } from 'react-redux'
 import { addLoction } from '../../services/Redux/location/locationsSlice'
 import { ComboBox } from "../../components/inputComp/comboBox";
+import FileSelector from "../../components/inputComp/file";
 
 
 
@@ -46,6 +47,7 @@ function SelectLocation() {
         onChange={(ev) => console.log(ev)}
         value={defaultOption}
         placeholder="Select an option" />
+        <FileSelector/>
       <input onClick={submit} type={'button'} value={`+ Add`} />
 
     </>

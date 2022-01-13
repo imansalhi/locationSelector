@@ -1,7 +1,9 @@
 
 import React, { useRef } from 'react';
+import uploadIcon from './uploadicon.png'
+import './upload.css'
 
-export function FileSelector() {
+export function FileSelector(props) {
 
     const hiddenFileInput = React.useRef(null);
 
@@ -15,9 +17,9 @@ export function FileSelector() {
     };
     return (
         <>
-            <Button onClick={handleClick}>
-                Upload a file
-            </Button>
+            <div className='uploadContainer'>
+                <img className='uploadImg' src={uploadIcon} onClick={handleClick} />
+            </div>
             <input
                 type="file"
                 ref={hiddenFileInput}
