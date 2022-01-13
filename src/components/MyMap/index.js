@@ -19,13 +19,9 @@ function MyMap({ changeMap, position }) {
             <GoogleMapReact
                 bootstrapURLKeys={{ key: apiKey }}
                 defaultCenter={tehranLocation}
-                defaultZoom={11}
+                defaultZoom={15}
                 onChange={(ev) => onChangeMap(ev)}
             >
-                {/* <MyMarker
-                    lat={lat || tehranLocation[0]}
-                    lng={lng || tehranLocation[1]}
-                /> */}
                 <Place point lat={lat || tehranLocation[0]}
                     lng={lng || tehranLocation[1]} />
 

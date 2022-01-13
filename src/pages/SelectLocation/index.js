@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addLoction } from '../../services/Redux/location/locationsSlice'
 import { ComboBox } from "../../components/inputComp/comboBox";
 import FileSelector from "../../components/inputComp/file";
+import Btn from "../../components/inputComp/botton";
 
 
 
@@ -62,7 +63,8 @@ function SelectLocation() {
         value={defaultOption}
         placeholder="Select an option" />
       <FileSelector handleFile={handleFile} />
-      <input onClick={submit} type={'button'} value={`+ Add`} />
+      {/* <input onClick={submit} type={'button'} value={`+ Add`} /> */}
+      <Btn onClick={submit}value={`+ save`}/>
 
     </>
   );
