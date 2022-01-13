@@ -8,52 +8,34 @@ import { addLoction } from '../../services/Redux/location/locationsSlice'
 import { ComboBox } from "../../components/inputComp/comboBox";
 import FileSelector from "../../components/inputComp/file";
 import Btn from "../../components/inputComp/botton";
+import useLocations from "./useLocations";
 
 
 
 function SelectLocation() {
-  const [locName, setLocName] = useState(null);
-  const [lat, setLat] = useState(null);
-  const [lng, setLng] = useState(null);
-  const [logo, setLogo] = useState(null)
-  const [placeType, setPlaceType] = useState(null)
+  const {
+    lat,
+    lng,
+    locName,
+    placeType,
+    logo,
+    changeLocName,
+    changeMap,
+    handleFile,
+    handleType,
+    resetForm
+  } = useLocations()
 
-  const changeLocName = (txt) => {
-    setLocName(txt.target.value)
-  }
-
-  const changeMap = (ev) => {
-    const { center: { lat, lng } } = ev
-    setLat(lat);
-    setLng(lng)
-  }
-
-  const handleFile = (file) => {
-    setLogo(file)
-  }
-
-  const handleType = (option) => {
-    setPlaceType(option.value)
-  }
 
 
   const locations = useSelector((state) => state.locations.value)
   const dispatch = useDispatch()
   const submit = () => {
-    debugger
     dispatch(addLoction({
       position: { lat, lng, },
       locName, logo, placeType
     }))
     resetForm()
-  }
-
-  const resetForm = () => {
-    setLocName('');
-    setLat(null);
-    setLng(null);
-    setPlaceType(null)
-    setLogo(null)
   }
 
 
@@ -72,7 +54,6 @@ function SelectLocation() {
         value={defaultOption}
         placeholder="Select an option" />
       <FileSelector handleFile={handleFile} />
-      {/* <input onClick={submit} type={'button'} value={`+ Add`} /> */}
       <Btn onClick={() => submit()} value={`+ save`} />
 
     </>
